@@ -1,4 +1,3 @@
-
 name: Unzip Zip File
 
 on:
@@ -16,21 +15,17 @@ jobs:
           python - <<EOF
           import zipfile
           import os
-
           zip_file_path = "ChessChatApp_FIXED.zip"
           extract_to_folder = "unzipped_contents"
-
           os.makedirs(extract_to_folder, exist_ok=True)
-
           with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
               zip_ref.extractall(extract_to_folder)
-
           print("Files extracted to:", extract_to_folder)
           print(os.listdir(extract_to_folder))
           EOF
 
       - name: Upload extracted files
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4   # <-- updated v4
         with:
           name: unzipped_files
           path: unzipped_contents/
