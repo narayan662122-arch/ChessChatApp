@@ -1,0 +1,36 @@
+
+name: Unzip Zip File
+
+on:
+  workflow_dispatch:
+
+jobs:
+  unzip_file:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Unzip ChessChatApp_FIXED.zip using Python
+        run: |
+          python - <<EOF
+          import zipfile
+          import os
+
+          zip_file_path = "ChessChatApp_FIXED.zip"
+          extract_to_folder = "unzipped_contents"
+
+          os.makedirs(extract_to_folder, exist_ok=True)
+
+          with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
+              zip_ref.extractall(extract_to_folder)
+
+          print("Files extracted to:", extract_to_folder)
+          print(os.listdir(extract_to_folder))
+          EOF
+
+      - name: Upload extracted files
+        uses: actions/upload-artifact@v3
+        with:
+          name: unzipped_files
+          path: unzipped_contents/
