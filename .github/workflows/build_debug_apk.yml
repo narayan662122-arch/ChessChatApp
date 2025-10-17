@@ -1,0 +1,50 @@
+name: Build Debug APK
+
+on:
+  workflow_dispatch:  # manual trigger
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      # 1️⃣ Checkout repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2️⃣ Setup Java 17 (AGP 8+ compatible)
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      # 3️⃣ Make gradlew executable
+      - name: Make gradlew executable
+        run: |
+          cd ChessChatApp
+          if [ ! -f "./gradlew" ]; then
+            echo "⚠ gradlew missing! Build may fail."
+          else
+            chmod +x ./gradlew
+          fi
+
+      # 4️⃣ Build Debug APK
+      - name: Build Debug APK
+        run: |
+          cd ChessChatApp
+          if [ -f "./gradlew" ]; then
+            ./gradlew assembleDebug
+          else
+            echo "⚠ gradlew not found, build will likely fail"
+          fi
+
+      # 5️⃣ Upload Debug APK as artifact
+      - name: Upload Debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: ChessChatApp-debug
+          path: ChessChatApp/app/build/outputs/apk/debug/*.apk
