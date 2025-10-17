@@ -22,8 +22,8 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      # 3️⃣ Ensure gradlew exists and executable
-      - name: Ensure gradlew exists
+      # 3️⃣ Ensure gradlew exists, build APK
+      - name: Ensure gradlew + Build Debug APK
         run: |
           cd ChessChatApp/ChessChatApp
           if [ ! -f "./gradlew" ]; then
@@ -31,10 +31,14 @@ jobs:
             gradle wrapper
           fi
           chmod +x ./gradlew
+          ./gradlew assembleDebug
 
-      # 4️⃣ Build Debug APK
-      - name: Build Debug APK
-        run: |
+      # 4️⃣ Upload APK as artifact
+      - name: Upload Debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: ChessChatApp-debug
+          path: "ChessChatApp/ChessChatApp/app/build/outputs/apk/debug/*.apk"        run: |
           cd ChessChatApp/ChessChatApp
           ./gradlew assembleDebug
 
