@@ -1,4 +1,4 @@
-name: Unzip Zip File
+name: Unzip Zip File to Repo
 
 on:
   workflow_dispatch:
@@ -6,9 +6,15 @@ on:
 jobs:
   unzip_file:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write  # push karne ke liye required
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Unzip ChessChatApp_FIXED.zip using Python
         run: |
@@ -16,16 +22,16 @@ jobs:
           import zipfile
           import os
           zip_file_path = "ChessChatApp_FIXED.zip"
-          extract_to_folder = "unzipped_contents"
-          os.makedirs(extract_to_folder, exist_ok=True)
+          extract_to_folder = "."
           with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
               zip_ref.extractall(extract_to_folder)
-          print("Files extracted to:", extract_to_folder)
-          print(os.listdir(extract_to_folder))
+          print("✅ Unzip complete!")
           EOF
 
-      - name: Upload extracted files
-        uses: actions/upload-artifact@v4   # <-- updated v4
-        with:
-          name: unzipped_files
-          path: unzipped_contents/
+      - name: Push extracted files back to repo
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Unzip ${ZIP_FILE} via workflow" || echo "No changes to commit"
+          git push
