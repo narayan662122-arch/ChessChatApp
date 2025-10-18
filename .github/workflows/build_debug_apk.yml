@@ -1,7 +1,10 @@
 name: Build Debug APK
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main  # ya jis branch par chahte ho
+      - master
 
 jobs:
   build:
@@ -17,16 +20,21 @@ jobs:
           distribution: temurin
           java-version: "17"
 
-      - name: Make gradlew executable
-        working-directory: ChessChatApp/ChessChatApp
-        run: chmod +x gradlew
-
-      - name: Build APK
-        working-directory: ChessChatApp/ChessChatApp
-        run: ./gradlew assembleDebug
-
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
         with:
-          name: app-debug
-          path: ChessChatApp/ChessChatApp/app/build/outputs/apk/debug/*.apk
+          api-level: 33
+          build-tools: "33.0.2"
+          ndk: "25.2.9519653"
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./ChessChatApp/gradlew
+
+      - name: Build Debug APK
+        run: ./ChessChatApp/gradlew assembleDebug
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: debug-apk
+          path: ./ChessChatApp/app/build/outputs/apk/debug/app-debug.apk
