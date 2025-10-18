@@ -1,4 +1,4 @@
-name: Build Debug APK with Logs
+name: Build Debug APK - Save Errors to Repo
 
 on:
   workflow_dispatch:
@@ -10,23 +10,35 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true  # taaki push ke liye auth mile
+        continue-on-error: true
 
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: "17"
-
-      - name: Make gradlew executable
-        run: chmod +x ./gradlew
-
-      - name: Build Debug APK and capture logs
-        run: |
-          ./gradlew assembleDebug 2>&1 | tee build_log.txt
         continue-on-error: true
 
-      - name: Upload build log
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-log
-          path: build_log.txt
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew || true
+        continue-on-error: true
+
+      - name: Build APK and capture only errors
+        run: |
+          if [ -f ./gradlew ]; then
+            ./gradlew assembleDebug 2> build_error.txt || true
+          else
+            echo "gradlew not found" > build_error.txt
+          fi
+        continue-on-error: true
+
+      - name: Commit and push error log
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add build_error.txt
+          git commit -m "Update build_error.txt from workflow run" || echo "No changes to commit"
+          git push origin HEAD
+        continue-on-error: true
