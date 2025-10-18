@@ -18,64 +18,18 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: '17'
+          java-version: "17"
+
+      - name: Make gradlew executable
+        working-directory: ChessChatApp/ChessChatApp
+        run: chmod +x gradlew
 
       - name: Build Debug APK
         working-directory: ChessChatApp/ChessChatApp
-        run: |
-          if [ ! -f "./gradlew" ]; then
-            echo "gradlew missing, generating wrapper..."
-            gradle wrapper
-          fi
-          chmod +x ./gradlew
-          ./gradlew assembleDebug
+        run: ./gradlew assembleDebug
 
-      - name: Upload Debug APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: ChessChatApp-debug
-          path: ChessChatApp/ChessChatApp/app/build/outputs/apk/debug/*.apk          path: ChessChatApp/ChessChatApp/app/build/outputs/apk/debug/*.apk
       - name: Upload Debug APK
         uses: actions/upload-artifact@v4
         with:
           name: ChessChatApp-debug-apk
-          path: ChessChatApp/ChessChatApp/app/build/outputs/apk/debug/*.apk          path: ChessChatApp/ChessChatApp/app/build/outputs/apk/debug/*.apk      - name: Upload Debug APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: ChessChatApp-debug
-          path: "ChessChatApp/ChessChatApp/app/build/outputs/apk/debug/*.apk"        run: |
-          cd ChessChatApp/ChessChatApp
-          ./gradlew assembleDebug
-
-      # 5️⃣ Upload APK as artifact
-      - name: Upload Debug APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: ChessChatApp-debug
-          path: "ChessChatApp/ChessChatApp/app/build/outputs/apk/debug/*.apk"          chmod +x ./gradlew
-
-      # 5️⃣ Build Debug APK
-      - name: Build Debug APK
-        run: |
-          cd ChessChatApp/ChessChatApp
-          ./gradlew assembleDebug
-
-      # 6️⃣ Upload APK as artifact
-      - name: Upload Debug APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: ChessChatApp-debug
-          path: ChessChatApp/ChessChatApp/app/build/outputs/apk/debug/*.apk        run: |
-          cd ChessChatApp
-          if [ -f "./gradlew" ]; then
-            ./gradlew assembleDebug
-          else
-            echo "⚠ gradlew not found, build will likely fail"
-          fi
-
-      # 5️⃣ Upload Debug APK as artifact
-      - name: Upload Debug APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: ChessChatApp-debug
-          path: ChessChatApp/app/build/outputs/apk/debug/*.apk
+          path: ChessChatApp/ChessChatApp/app/build/outputs/apk/debug/*.apk
