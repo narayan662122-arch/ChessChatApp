@@ -1,40 +1,36 @@
-name: Build Debug APK
+name: Debug Gradle Path
 
 on:
-  push:
-    branches:
-      - main  # ya jis branch par chahte ho
-      - master
+  workflow_dispatch:
 
 jobs:
-  build:
+  debug:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Setup Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: "17"
+      - name: Debug - Find gradlew path
+        run: |
+          python3 - << 'EOF' 2> error_log.txt
+          import os
+          try:
+              found = False
+              for root, dirs, files in os.walk('.'):
+                  if 'gradlew' in files:
+                      print(f"✅ gradlew found at: {os.path.join(root, 'gradlew')}")
+                      found = True
+              if not found:
+                  print("gradlew not found.")
+          except Exception as e:
+              with open("error_log.txt", "w") as f:
+                  f.write(str(e))
+          print("Search complete.")
+          EOF
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v2
-        with:
-          api-level: 33
-          build-tools: "33.0.2"
-          ndk: "25.2.9519653"
-
-      - name: Grant execute permission for gradlew
-        run: chmod +x ./ChessChatApp/gradlew
-
-      - name: Build Debug APK
-        run: ./ChessChatApp/gradlew assembleDebug
-
-      - name: Upload APK artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: debug-apk
-          path: ./ChessChatApp/app/build/outputs/apk/debug/app-debug.apk
+      - name: Show error log if any
+        if: failure()
+        run: |
+          echo "Errors captured in error_log.txt:"
+          cat error_log.txt
