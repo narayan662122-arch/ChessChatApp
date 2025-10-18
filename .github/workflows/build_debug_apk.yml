@@ -20,21 +20,26 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Build Debug APK
+      - name: Ensure Gradle wrapper exists and is executable
         working-directory: ChessChatApp/ChessChatApp
         run: |
           if [ ! -f "./gradlew" ]; then
-            echo "gradlew missing, generating wrapper..."
-            gradle wrapper
+            echo "gradlew missing, attempting to generate wrapper..."
+            # try to generate wrapper if gradle is available on runner
+            gradle wrapper || echo "gradle not available on runner — please commit gradlew to repository"
           fi
-          chmod +x ./gradlew
-          ./gradlew assembleDebug
+          chmod +x ./gradlew || true
+
+      - name: Build Debug APK
+        working-directory: ChessChatApp/ChessChatApp
+        run: |
+          ./gradlew assembleDebug --no-daemon
 
       - name: Upload Debug APK
         uses: actions/upload-artifact@v4
         with:
           name: ChessChatApp-debug-apk
-          path: ChessChatApp/ChessChatApp/app/build/outputs/apk/debug/*.apk      - name: Upload Debug APK
+          path: ChessChatApp/ChessChatApp/app/build/outputs/apk/debug/*.apk          path: ChessChatApp/ChessChatApp/app/build/outputs/apk/debug/*.apk      - name: Upload Debug APK
         uses: actions/upload-artifact@v4
         with:
           name: ChessChatApp-debug
