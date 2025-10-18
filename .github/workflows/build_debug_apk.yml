@@ -11,30 +11,30 @@ jobs:
       contents: write
 
     steps:
-      # 1️⃣ Checkout repo
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2️⃣ Setup Java 17
       - name: Set up Java 17
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
 
-      # 3️⃣ Ensure gradlew exists, build APK
-      - name: Ensure gradlew + Build Debug APK
+      - name: Build Debug APK
+        working-directory: ChessChatApp/ChessChatApp
         run: |
-          cd ChessChatApp/ChessChatApp
           if [ ! -f "./gradlew" ]; then
-            echo "⚠ gradlew missing, generating wrapper..."
+            echo "gradlew missing, generating wrapper..."
             gradle wrapper
           fi
           chmod +x ./gradlew
           ./gradlew assembleDebug
 
-      # 4️⃣ Upload APK as artifact
       - name: Upload Debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: ChessChatApp-debug-apk
+          path: ChessChatApp/ChessChatApp/app/build/outputs/apk/debug/*.apk      - name: Upload Debug APK
         uses: actions/upload-artifact@v4
         with:
           name: ChessChatApp-debug
