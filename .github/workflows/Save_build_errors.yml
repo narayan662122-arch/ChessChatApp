@@ -47,4 +47,17 @@ jobs:
             git push origin HEAD
           else
             echo "No errors found. Skipping push."
+          fi          # Extract only FAILURE or ERROR lines from gradle logs
+          grep -i "FAILURE\|ERROR" workflow_logs/* > build_error.txt || true
+
+      - name: Commit and Push Errors if Non-Empty
+        run: |
+          if [ -s build_error.txt ]; then
+            git config --global user.name "github-actions"
+            git config --global user.email "github-actions@github.com"
+            git add build_error.txt
+            git commit -m "Update build_error.txt from latest workflow run" || echo "No changes"
+            git push origin HEAD
+          else
+            echo "No errors found. Skipping push."
           fi
