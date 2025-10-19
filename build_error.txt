@@ -1,1 +1,1 @@
-workflow_logs/0_build.txt:2025-10-19T13:10:01.8995367Z ##[error]Process completed with exit code 1.
+workflow_logs/0_build.txt:2025-10-19T13:10:18.2612821Z ##[error]Process completed with exit code 1.
