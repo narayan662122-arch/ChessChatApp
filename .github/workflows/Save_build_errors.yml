@@ -28,15 +28,13 @@ jobs:
           curl -L -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
           -o workflow_logs.zip \
           https://api.github.com/repos/${{ github.repository }}/actions/runs/$RUN_ID/logs
-
           unzip workflow_logs.zip -d workflow_logs
 
       - name: Extract Build Errors
         run: |
           # Clear previous error file if exists
           > build_error.txt
-          
-          # Find gradle logs and extract error lines
+          # Extract only FAILURE or ERROR lines from gradle logs
           grep -i "FAILURE\|ERROR" workflow_logs/* > build_error.txt || true
 
       - name: Commit and Push Errors if Non-Empty
@@ -49,17 +47,4 @@ jobs:
             git push origin HEAD
           else
             echo "No errors found. Skipping push."
-          fi          
-          # Find gradle logs and extract error lines
-          grep -i "FAILURE\|ERROR" workflow_logs/* > build_error.txt || true
-
-      - name: Commit and Push Errors if Non-Empty
-        run: |
-          if [ -s build_error.txt ]; then
-            git config --global user.name "github-actions"
-            git config --global user.email "github-actions@github.com"
-            git add build_error.txt
-            git commit -m "Update build_error.txt from latest workflow run" || echo "No changes"
-            git push origin HEAD
-          else
-            echo "No errors found. Skipping push."
+          fi
