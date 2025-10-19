@@ -1,1 +1,1 @@
-gradlew not found
+workflow_logs/0_build.txt:2025-10-19T12:53:53.5747890Z ##[error]Process completed with exit code 1.
