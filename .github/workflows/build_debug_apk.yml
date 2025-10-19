@@ -8,10 +8,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repo with PAT
         uses: actions/checkout@v4
         with:
-          persist-credentials: true  # taaki push ke liye auth mile
+          token: ${{ secrets.PAT_TOKEN }}
         continue-on-error: true
 
       - name: Setup Java
@@ -25,7 +25,7 @@ jobs:
         run: chmod +x ./gradlew || true
         continue-on-error: true
 
-      - name: Build APK and capture only errors
+      - name: Build APK and capture only errors to file
         run: |
           if [ -f ./gradlew ]; then
             ./gradlew assembleDebug 2> build_error.txt || true
@@ -34,11 +34,11 @@ jobs:
           fi
         continue-on-error: true
 
-      - name: Commit and push error log
+      - name: Commit and push build_error.txt to repo
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
           git add build_error.txt
-          git commit -m "Update build_error.txt from workflow run" || echo "No changes to commit"
-          git push origin HEAD
+          git commit -m "Update build_error.txt from workflow" || echo "No changes to commit"
+          git push origin HEAD || echo "Push failed"
         continue-on-error: true
