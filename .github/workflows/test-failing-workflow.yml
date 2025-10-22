@@ -1,0 +1,19 @@
+name: Test Failing Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  failing-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Run commands that will fail
+        run: |
+          echo "Starting test that will intentionally fail..."
+          echo "ERROR: Critical error occurred!"
+          echo "ERROR: Database connection failed"
+          echo "ERROR: Unable to process request"
+          exit 1
