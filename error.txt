@@ -2,14 +2,14 @@
 WORKFLOW ERRORS ONLY
 ================================================
 Workflow Name: CI
-Workflow Run ID: 18711525126
+Workflow Run ID: 18711620369
 Status: failure
 Triggered by: narayan662122-arch
-Run URL: https://github.com/narayan662122-arch/ChessChatApp/actions/runs/18711525126
-Timestamp: Wed Oct 22 09:21:38 UTC 2025
+Run URL: https://github.com/narayan662122-arch/ChessChatApp/actions/runs/18711620369
+Timestamp: Wed Oct 22 09:25:21 UTC 2025
 ================================================
 
 ERRORS AND FAILURES:
 ------------------------------------------------
-build	Build debug APK	2025-10-22T09:21:21.9039460Z ##[error]Process completed with exit code 1.
+build	Build debug APK	2025-10-22T09:25:00.7889826Z ##[error]Process completed with exit code 1.
 ------------------------------------------------
