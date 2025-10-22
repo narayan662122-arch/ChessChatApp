@@ -1,0 +1,64 @@
+name: Build with Error Handling
+
+on:
+  workflow_dispatch:
+
+jobs:
+  error:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Run build steps
+        id: build
+        continue-on-error: true
+        run: |
+          set +e
+          exec 2> >(tee -a build_error.txt >&2)
+          
+          name: Instant Workflow Failure Capture  on:   workflow_run:     workflows: ["*"]     types:       - completed  jobs:   capture-failure:     if: ${{ github.event.workflow_run.conclusion == 'failure' }}     runs-on: ubuntu-latest     permissions:       actions: read       contents: write       issues: write  # Optional: for creating issues          steps:     - name: Checkout repository       uses: actions/checkout@v4            - name: Capture workflow failure details       env:         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}       run: |         # Create timestamp         TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S UTC")                  # Prepare error entry with better formatting         cat >> error.txt << EOF                  🚨 WORKFLOW FAILURE DETECTED 🚨         ==================================         Timestamp: $TIMESTAMP         Workflow: ${{ github.event.workflow_run.name }}         Run Number: #${{ github.event.workflow_run.run_number }}         Workflow ID: ${{ github.event.workflow_run.id }}         Failed at: ${{ github.event.workflow_run.created_at }}         Triggered by: ${{ github.event.workflow_run.actor.login }}         Branch: ${{ github.event.workflow_run.head_branch }}         Commit: ${{ github.event.workflow_run.head_commit.message }}         URL: ${{ github.event.workflow_run.html_url }}         ==================================                  EOF      - name: Get failed job logs       env:         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}       run: |         FAILED_WORKFLOW_ID=${{ github.event.workflow_run.id }}                  # Get jobs and find failed ones         JOBS_JSON=$(gh api repos/${{ github.repository }}/actions/runs/$FAILED_WORKFLOW_ID/jobs)                  echo "FAILED JOBS:" >> error.txt         echo "-----------" >> error.txt                  # Process each failed job         echo "$JOBS_JSON" | jq -r '.jobs[] | select(.conclusion == "failure") | "\(.name)"' | while read job_name; do           echo "❌ $job_name" >> error.txt         done                  echo "" >> error.txt         echo "Total failed jobs: $(echo "$JOBS_JSON" | jq '[.jobs[] | select(.conclusion == "failure")] | length')" >> error.txt      - name: Create failure summary       run: |         # Add summary section         cat >> error.txt << EOF                  📊 FAILURE SUMMARY:         • Workflow: ${{ github.event.workflow_run.name }}         • Time: ${{ github.event.workflow_run.created_at }}         • Branch: ${{ github.event.workflow_run.head_branch }}         • Trigger: ${{ github.event.workflow_run.actor.login }}                  EOF      - name: Commit and push error file       run: |         git config --local user.email "action@github.com"         git config --local user.name "GitHub Action"         git add error.txt         if git diff --staged --quiet; then           echo "No changes to commit"         else           git commit -m "🚨 Workflow failed: ${{ github.event.workflow_run.name }} (#${{ github.event.workflow_run.run_number }}) [skip ci]"           git push         fi      # Optional: Create GitHub Issue for critical failures     - name: Create Issue for Critical Failure       if: ${{ contains(github.event.workflow_run.name, 'production') || contains(github.event.workflow_run.name, 'deploy') }}       uses: actions/github-script@v6       with:         script: |           github.rest.issues.create({             owner: context.repo.owner,             repo: context.repo.repo,             title: `🚨 Workflow Failure: ${{ github.event.workflow_run.name }}`,             body: `A critical workflow has failed:\n\n- **Workflow**: ${{ github.event.workflow_run.name }}\n- **Run**: #${{ github.event.workflow_run.run_number }}\n- **Branch**: ${{ github.event.workflow_run.head_branch }}\n- **Triggered by**: ${{ github.event.workflow_run.actor.login }}\n- **Commit**: ${{ github.event.workflow_run.head_commit.message }}\n- **URL**: ${{ github.event.workflow_run.html_url }}\n\nPlease investigate the failure.`           })
+          
+          BUILD_EXIT_CODE=$?
+          if [ $BUILD_EXIT_CODE -ne 0 ]; then
+            echo "Build failed with exit code $BUILD_EXIT_CODE" >> build_error.txt
+            exit $BUILD_EXIT_CODE
+          fi
+      
+      - name: Capture error summary
+        if: failure()
+        run: |
+          echo "## Build Error Summary" >> $GITHUB_STEP_SUMMARY
+          echo "Build failed at: $(date)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Error Details:" >> $GITHUB_STEP_SUMMARY
+          if [ -f build_error.txt ]; then
+            cat build_error.txt >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### Latest Errors:" >> $GITHUB_STEP_SUMMARY
+            tail -20 build_error.txt
+          else
+            echo "No error file generated" >> $GITHUB_STEP_SUMMARY
+          fi
+      
+      - name: Upload error artifact
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-errors
+          path: build_error.txt
+          if-no-files-found: ignore
+      
+      - name: Print error summary
+        if: failure()
+        run: |
+          echo "========================================="
+          echo "LATEST ERROR SUMMARY"
+          echo "========================================="
+          if [ -f build_error.txt ]; then
+            tail -50 build_error.txt
+          else
+            echo "No errors captured"
+          fi
+          echo "========================================="
