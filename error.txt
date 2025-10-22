@@ -1,21 +1,16 @@
 ================================================
 WORKFLOW ERRORS ONLY
 ================================================
-Workflow Name: Test Failing Workflow
-Workflow Run ID: 18709893934
+Workflow Name: CI
+Workflow Run ID: 18709966810
 Status: failure
 Triggered by: narayan662122-arch
-Run URL: https://github.com/narayan662122-arch/ChessChatApp/actions/runs/18709893934
-Timestamp: Wed Oct 22 08:18:50 UTC 2025
+Run URL: https://github.com/narayan662122-arch/ChessChatApp/actions/runs/18709966810
+Timestamp: Wed Oct 22 08:21:48 UTC 2025
 ================================================
 
 ERRORS AND FAILURES:
 ------------------------------------------------
-failing-job	Run commands that will fail	2025-10-22T08:18:35.8800046Z [36;1mecho "ERROR: Critical error occurred!"[0m
-failing-job	Run commands that will fail	2025-10-22T08:18:35.8800646Z [36;1mecho "ERROR: Database connection failed"[0m
-failing-job	Run commands that will fail	2025-10-22T08:18:35.8801252Z [36;1mecho "ERROR: Unable to process request"[0m
-failing-job	Run commands that will fail	2025-10-22T08:18:35.8908808Z ERROR: Critical error occurred!
-failing-job	Run commands that will fail	2025-10-22T08:18:35.8909791Z ERROR: Database connection failed
-failing-job	Run commands that will fail	2025-10-22T08:18:35.8910592Z ERROR: Unable to process request
-failing-job	Run commands that will fail	2025-10-22T08:18:35.8922378Z ##[error]Process completed with exit code 1.
+build	Grant execute permission for gradlew	2025-10-22T08:21:32.2483657Z chmod: cannot access 'gradlew': No such file or directory
+build	Grant execute permission for gradlew	2025-10-22T08:21:32.2497971Z ##[error]Process completed with exit code 1.
 ------------------------------------------------
