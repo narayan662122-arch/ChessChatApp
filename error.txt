@@ -1,161 +1,133 @@
 ================================================
 WORKFLOW LOGS CAPTURE
 ================================================
-Workflow Name: CI
-Workflow Run ID: 18709475383
-Status: failure
+Workflow Name: Test Workflow
+Workflow Run ID: 18709479048
+Status: success
 Triggered by: narayan662122-arch
-Run URL: https://github.com/narayan662122-arch/ChessChatApp/actions/runs/18709475383
-Timestamp: Wed Oct 22 08:02:17 UTC 2025
+Run URL: https://github.com/narayan662122-arch/ChessChatApp/actions/runs/18709479048
+Timestamp: Wed Oct 22 08:02:24 UTC 2025
 ================================================
 
-build	Set up job	﻿2025-10-22T08:01:57.1729973Z Current runner version: '2.329.0'
-build	Set up job	2025-10-22T08:01:57.1753827Z ##[group]Runner Image Provisioner
-build	Set up job	2025-10-22T08:01:57.1754634Z Hosted Compute Agent
-build	Set up job	2025-10-22T08:01:57.1755185Z Version: 20250912.392
-build	Set up job	2025-10-22T08:01:57.1755807Z Commit: d921fda672a98b64f4f82364647e2f10b2267d0b
-build	Set up job	2025-10-22T08:01:57.1756515Z Build Date: 2025-09-12T15:23:14Z
-build	Set up job	2025-10-22T08:01:57.1757073Z ##[endgroup]
-build	Set up job	2025-10-22T08:01:57.1757952Z ##[group]Operating System
-build	Set up job	2025-10-22T08:01:57.1758599Z Ubuntu
-build	Set up job	2025-10-22T08:01:57.1759042Z 24.04.3
-build	Set up job	2025-10-22T08:01:57.1759552Z LTS
-build	Set up job	2025-10-22T08:01:57.1760027Z ##[endgroup]
-build	Set up job	2025-10-22T08:01:57.1760552Z ##[group]Runner Image
-build	Set up job	2025-10-22T08:01:57.1761072Z Image: ubuntu-24.04
-build	Set up job	2025-10-22T08:01:57.1761743Z Version: 20250929.60.1
-build	Set up job	2025-10-22T08:01:57.1762749Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20250929.60/images/ubuntu/Ubuntu2404-Readme.md
-build	Set up job	2025-10-22T08:01:57.1764107Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20250929.60
-build	Set up job	2025-10-22T08:01:57.1765400Z ##[endgroup]
-build	Set up job	2025-10-22T08:01:57.1766525Z ##[group]GITHUB_TOKEN Permissions
-build	Set up job	2025-10-22T08:01:57.1768633Z Contents: read
-build	Set up job	2025-10-22T08:01:57.1769178Z Metadata: read
-build	Set up job	2025-10-22T08:01:57.1769808Z Packages: read
-build	Set up job	2025-10-22T08:01:57.1770344Z ##[endgroup]
-build	Set up job	2025-10-22T08:01:57.1772273Z Secret source: Actions
-build	Set up job	2025-10-22T08:01:57.1773148Z Prepare workflow directory
-build	Set up job	2025-10-22T08:01:57.2147295Z Prepare all required actions
-build	Set up job	2025-10-22T08:01:57.2184669Z Getting action download info
-build	Set up job	2025-10-22T08:01:57.6440369Z Download action repository 'actions/checkout@v4' (SHA:08eba0b27e820071cde6df949e0beb9ba4906955)
-build	Set up job	2025-10-22T08:01:58.1318810Z Download action repository 'actions/setup-java@v4' (SHA:c5195efecf7bdfc987ee8bae7a71cb8b11521c00)
-build	Set up job	2025-10-22T08:01:58.8768617Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
-build	Set up job	2025-10-22T08:01:59.1705678Z Complete job name: build
-build	Run actions/checkout@v4	﻿2025-10-22T08:01:59.2502869Z ##[group]Run actions/checkout@v4
-build	Run actions/checkout@v4	2025-10-22T08:01:59.2504161Z with:
-build	Run actions/checkout@v4	2025-10-22T08:01:59.2505000Z   repository: narayan662122-arch/ChessChatApp
-build	Run actions/checkout@v4	2025-10-22T08:01:59.2506301Z   token: ***
-build	Run actions/checkout@v4	2025-10-22T08:01:59.2507072Z   ssh-strict: true
-build	Run actions/checkout@v4	2025-10-22T08:01:59.2508205Z   ssh-user: git
-build	Run actions/checkout@v4	2025-10-22T08:01:59.2509011Z   persist-credentials: true
-build	Run actions/checkout@v4	2025-10-22T08:01:59.2509885Z   clean: true
-build	Run actions/checkout@v4	2025-10-22T08:01:59.2510688Z   sparse-checkout-cone-mode: true
-build	Run actions/checkout@v4	2025-10-22T08:01:59.2511667Z   fetch-depth: 1
-build	Run actions/checkout@v4	2025-10-22T08:01:59.2512437Z   fetch-tags: false
-build	Run actions/checkout@v4	2025-10-22T08:01:59.2513252Z   show-progress: true
-build	Run actions/checkout@v4	2025-10-22T08:01:59.2514071Z   lfs: false
-build	Run actions/checkout@v4	2025-10-22T08:01:59.2514816Z   submodules: false
-build	Run actions/checkout@v4	2025-10-22T08:01:59.2515638Z   set-safe-directory: true
-build	Run actions/checkout@v4	2025-10-22T08:01:59.2517127Z ##[endgroup]
-build	Run actions/checkout@v4	2025-10-22T08:01:59.3599317Z Syncing repository: narayan662122-arch/ChessChatApp
-build	Run actions/checkout@v4	2025-10-22T08:01:59.3601998Z ##[group]Getting Git version info
-build	Run actions/checkout@v4	2025-10-22T08:01:59.3603417Z Working directory is '/home/runner/work/ChessChatApp/ChessChatApp'
-build	Run actions/checkout@v4	2025-10-22T08:01:59.3605475Z [command]/usr/bin/git version
-build	Run actions/checkout@v4	2025-10-22T08:01:59.6482871Z git version 2.51.0
-build	Run actions/checkout@v4	2025-10-22T08:01:59.6528729Z ##[endgroup]
-build	Run actions/checkout@v4	2025-10-22T08:01:59.6543704Z Temporarily overriding HOME='/home/runner/work/_temp/a1721f0e-6c26-441e-ab0f-327aaece67e7' before making global git config changes
-build	Run actions/checkout@v4	2025-10-22T08:01:59.6545344Z Adding repository directory to the temporary git global config as a safe directory
-build	Run actions/checkout@v4	2025-10-22T08:01:59.6549078Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/ChessChatApp/ChessChatApp
-build	Run actions/checkout@v4	2025-10-22T08:01:59.6656472Z Deleting the contents of '/home/runner/work/ChessChatApp/ChessChatApp'
-build	Run actions/checkout@v4	2025-10-22T08:01:59.6660354Z ##[group]Initializing the repository
-build	Run actions/checkout@v4	2025-10-22T08:01:59.6664157Z [command]/usr/bin/git init /home/runner/work/ChessChatApp/ChessChatApp
-build	Run actions/checkout@v4	2025-10-22T08:01:59.7407838Z hint: Using 'master' as the name for the initial branch. This default branch name
-build	Run actions/checkout@v4	2025-10-22T08:01:59.7409190Z hint: is subject to change. To configure the initial branch name to use in all
-build	Run actions/checkout@v4	2025-10-22T08:01:59.7410001Z hint: of your new repositories, which will suppress this warning, call:
-build	Run actions/checkout@v4	2025-10-22T08:01:59.7410806Z hint:
-build	Run actions/checkout@v4	2025-10-22T08:01:59.7411229Z hint: 	git config --global init.defaultBranch <name>
-build	Run actions/checkout@v4	2025-10-22T08:01:59.7411728Z hint:
-build	Run actions/checkout@v4	2025-10-22T08:01:59.7412167Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
-build	Run actions/checkout@v4	2025-10-22T08:01:59.7412899Z hint: 'development'. The just-created branch can be renamed via this command:
-build	Run actions/checkout@v4	2025-10-22T08:01:59.7413469Z hint:
-build	Run actions/checkout@v4	2025-10-22T08:01:59.7413789Z hint: 	git branch -m <name>
-build	Run actions/checkout@v4	2025-10-22T08:01:59.7414141Z hint:
-build	Run actions/checkout@v4	2025-10-22T08:01:59.7414628Z hint: Disable this message with "git config set advice.defaultBranchName false"
-build	Run actions/checkout@v4	2025-10-22T08:01:59.7459348Z Initialized empty Git repository in /home/runner/work/ChessChatApp/ChessChatApp/.git/
-build	Run actions/checkout@v4	2025-10-22T08:01:59.7472067Z [command]/usr/bin/git remote add origin https://github.com/narayan662122-arch/ChessChatApp
-build	Run actions/checkout@v4	2025-10-22T08:01:59.7606986Z ##[endgroup]
-build	Run actions/checkout@v4	2025-10-22T08:01:59.7608357Z ##[group]Disabling automatic garbage collection
-build	Run actions/checkout@v4	2025-10-22T08:01:59.7612153Z [command]/usr/bin/git config --local gc.auto 0
-build	Run actions/checkout@v4	2025-10-22T08:01:59.7639581Z ##[endgroup]
-build	Run actions/checkout@v4	2025-10-22T08:01:59.7640122Z ##[group]Setting up auth
-build	Run actions/checkout@v4	2025-10-22T08:01:59.7646464Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
-build	Run actions/checkout@v4	2025-10-22T08:01:59.7674991Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
-build	Run actions/checkout@v4	2025-10-22T08:01:59.9782084Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
-build	Run actions/checkout@v4	2025-10-22T08:01:59.9811599Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
-build	Run actions/checkout@v4	2025-10-22T08:02:00.0034456Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
-build	Run actions/checkout@v4	2025-10-22T08:02:00.0073050Z ##[endgroup]
-build	Run actions/checkout@v4	2025-10-22T08:02:00.0074219Z ##[group]Fetching the repository
-build	Run actions/checkout@v4	2025-10-22T08:02:00.0083707Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +0dbd84a292b799679ab67e89ad1fba5280e55ec4:refs/remotes/origin/main
-build	Run actions/checkout@v4	2025-10-22T08:02:00.6106248Z From https://github.com/narayan662122-arch/ChessChatApp
-build	Run actions/checkout@v4	2025-10-22T08:02:00.6199739Z  * [new ref]         0dbd84a292b799679ab67e89ad1fba5280e55ec4 -> origin/main
-build	Run actions/checkout@v4	2025-10-22T08:02:00.6201435Z ##[endgroup]
-build	Run actions/checkout@v4	2025-10-22T08:02:00.6201942Z ##[group]Determining the checkout info
-build	Run actions/checkout@v4	2025-10-22T08:02:00.6203056Z ##[endgroup]
-build	Run actions/checkout@v4	2025-10-22T08:02:00.6208038Z [command]/usr/bin/git sparse-checkout disable
-build	Run actions/checkout@v4	2025-10-22T08:02:00.6296975Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
-build	Run actions/checkout@v4	2025-10-22T08:02:00.6323274Z ##[group]Checking out the ref
-build	Run actions/checkout@v4	2025-10-22T08:02:00.6326829Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
-build	Run actions/checkout@v4	2025-10-22T08:02:00.6453941Z Switched to a new branch 'main'
-build	Run actions/checkout@v4	2025-10-22T08:02:00.6456604Z branch 'main' set up to track 'origin/main'.
-build	Run actions/checkout@v4	2025-10-22T08:02:00.6462317Z ##[endgroup]
-build	Run actions/checkout@v4	2025-10-22T08:02:00.6495036Z [command]/usr/bin/git log -1 --format=%H
-build	Run actions/checkout@v4	2025-10-22T08:02:00.6515898Z 0dbd84a292b799679ab67e89ad1fba5280e55ec4
-build	Set up JDK 17	﻿2025-10-22T08:02:00.6752016Z ##[group]Run actions/setup-java@v4
-build	Set up JDK 17	2025-10-22T08:02:00.6752423Z with:
-build	Set up JDK 17	2025-10-22T08:02:00.6752687Z   java-version: 17
-build	Set up JDK 17	2025-10-22T08:02:00.6752974Z   distribution: temurin
-build	Set up JDK 17	2025-10-22T08:02:00.6753274Z   java-package: jdk
-build	Set up JDK 17	2025-10-22T08:02:00.6753559Z   check-latest: false
-build	Set up JDK 17	2025-10-22T08:02:00.6753846Z   server-id: github
-build	Set up JDK 17	2025-10-22T08:02:00.6754137Z   server-username: GITHUB_ACTOR
-build	Set up JDK 17	2025-10-22T08:02:00.6754477Z   server-password: GITHUB_TOKEN
-build	Set up JDK 17	2025-10-22T08:02:00.6754810Z   overwrite-settings: true
-build	Set up JDK 17	2025-10-22T08:02:00.6755125Z   job-status: success
-build	Set up JDK 17	2025-10-22T08:02:00.6755640Z   token: ***
-build	Set up JDK 17	2025-10-22T08:02:00.6755904Z ##[endgroup]
-build	Set up JDK 17	2025-10-22T08:02:00.8668371Z ##[group]Installed distributions
-build	Set up JDK 17	2025-10-22T08:02:00.8908698Z Resolved Java 17.0.16+8 from tool-cache
-build	Set up JDK 17	2025-10-22T08:02:00.8909838Z Setting Java 17.0.16+8 as the default
-build	Set up JDK 17	2025-10-22T08:02:00.8923680Z Creating toolchains.xml for JDK version 17 from temurin
-build	Set up JDK 17	2025-10-22T08:02:00.9000510Z Writing to /home/runner/.m2/toolchains.xml
-build	Set up JDK 17	2025-10-22T08:02:00.9003337Z 
-build	Set up JDK 17	2025-10-22T08:02:00.9003602Z Java configuration:
-build	Set up JDK 17	2025-10-22T08:02:00.9003962Z   Distribution: temurin
-build	Set up JDK 17	2025-10-22T08:02:00.9004317Z   Version: 17.0.16+8
-build	Set up JDK 17	2025-10-22T08:02:00.9004911Z   Path: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.16-8/x64
-build	Set up JDK 17	2025-10-22T08:02:00.9005339Z 
-build	Set up JDK 17	2025-10-22T08:02:00.9005670Z ##[endgroup]
-build	Set up JDK 17	2025-10-22T08:02:00.9018424Z Creating settings.xml with server-id: github
-build	Set up JDK 17	2025-10-22T08:02:00.9024230Z Writing to /home/runner/.m2/settings.xml
-build	Grant execute permission for gradlew	﻿2025-10-22T08:02:00.9128218Z ##[group]Run chmod +x gradlew
-build	Grant execute permission for gradlew	2025-10-22T08:02:00.9128620Z [36;1mchmod +x gradlew[0m
-build	Grant execute permission for gradlew	2025-10-22T08:02:00.9168689Z shell: /usr/bin/bash -e {0}
-build	Grant execute permission for gradlew	2025-10-22T08:02:00.9169007Z env:
-build	Grant execute permission for gradlew	2025-10-22T08:02:00.9169344Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.16-8/x64
-build	Grant execute permission for gradlew	2025-10-22T08:02:00.9169871Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.16-8/x64
-build	Grant execute permission for gradlew	2025-10-22T08:02:00.9170262Z ##[endgroup]
-build	Grant execute permission for gradlew	2025-10-22T08:02:00.9252922Z chmod: cannot access 'gradlew': No such file or directory
-build	Grant execute permission for gradlew	2025-10-22T08:02:00.9266927Z ##[error]Process completed with exit code 1.
-build	Post Set up JDK 17	﻿2025-10-22T08:02:00.9423462Z Post job cleanup.
-build	Post Run actions/checkout@v4	﻿2025-10-22T08:02:01.1155977Z Post job cleanup.
-build	Post Run actions/checkout@v4	2025-10-22T08:02:01.2091970Z [command]/usr/bin/git version
-build	Post Run actions/checkout@v4	2025-10-22T08:02:01.2131567Z git version 2.51.0
-build	Post Run actions/checkout@v4	2025-10-22T08:02:01.2174159Z Temporarily overriding HOME='/home/runner/work/_temp/78399137-be62-432f-a3fa-98c6f1372d34' before making global git config changes
-build	Post Run actions/checkout@v4	2025-10-22T08:02:01.2175168Z Adding repository directory to the temporary git global config as a safe directory
-build	Post Run actions/checkout@v4	2025-10-22T08:02:01.2179865Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/ChessChatApp/ChessChatApp
-build	Post Run actions/checkout@v4	2025-10-22T08:02:01.2214110Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
-build	Post Run actions/checkout@v4	2025-10-22T08:02:01.2245160Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
-build	Post Run actions/checkout@v4	2025-10-22T08:02:01.2467232Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
-build	Post Run actions/checkout@v4	2025-10-22T08:02:01.2488171Z http.https://github.com/.extraheader
-build	Post Run actions/checkout@v4	2025-10-22T08:02:01.2501868Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
-build	Post Run actions/checkout@v4	2025-10-22T08:02:01.2532054Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
-build	Complete job	﻿2025-10-22T08:02:01.2852735Z Cleaning up orphan processes
+test-job	Set up job	﻿2025-10-22T08:02:06.4535968Z Current runner version: '2.329.0'
+test-job	Set up job	2025-10-22T08:02:06.4561319Z ##[group]Runner Image Provisioner
+test-job	Set up job	2025-10-22T08:02:06.4562520Z Hosted Compute Agent
+test-job	Set up job	2025-10-22T08:02:06.4563175Z Version: 20250912.392
+test-job	Set up job	2025-10-22T08:02:06.4563774Z Commit: d921fda672a98b64f4f82364647e2f10b2267d0b
+test-job	Set up job	2025-10-22T08:02:06.4564475Z Build Date: 2025-09-12T15:23:14Z
+test-job	Set up job	2025-10-22T08:02:06.4565018Z ##[endgroup]
+test-job	Set up job	2025-10-22T08:02:06.4565654Z ##[group]Operating System
+test-job	Set up job	2025-10-22T08:02:06.4566187Z Ubuntu
+test-job	Set up job	2025-10-22T08:02:06.4566661Z 24.04.3
+test-job	Set up job	2025-10-22T08:02:06.4567182Z LTS
+test-job	Set up job	2025-10-22T08:02:06.4567600Z ##[endgroup]
+test-job	Set up job	2025-10-22T08:02:06.4568074Z ##[group]Runner Image
+test-job	Set up job	2025-10-22T08:02:06.4568676Z Image: ubuntu-24.04
+test-job	Set up job	2025-10-22T08:02:06.4569179Z Version: 20250929.60.1
+test-job	Set up job	2025-10-22T08:02:06.4570141Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20250929.60/images/ubuntu/Ubuntu2404-Readme.md
+test-job	Set up job	2025-10-22T08:02:06.4571534Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20250929.60
+test-job	Set up job	2025-10-22T08:02:06.4572971Z ##[endgroup]
+test-job	Set up job	2025-10-22T08:02:06.4574155Z ##[group]GITHUB_TOKEN Permissions
+test-job	Set up job	2025-10-22T08:02:06.4576229Z Contents: read
+test-job	Set up job	2025-10-22T08:02:06.4576843Z Metadata: read
+test-job	Set up job	2025-10-22T08:02:06.4577378Z Packages: read
+test-job	Set up job	2025-10-22T08:02:06.4577834Z ##[endgroup]
+test-job	Set up job	2025-10-22T08:02:06.4580290Z Secret source: Actions
+test-job	Set up job	2025-10-22T08:02:06.4581337Z Prepare workflow directory
+test-job	Set up job	2025-10-22T08:02:06.4927415Z Prepare all required actions
+test-job	Set up job	2025-10-22T08:02:06.4966163Z Getting action download info
+test-job	Set up job	2025-10-22T08:02:06.8933314Z Download action repository 'actions/checkout@v4' (SHA:08eba0b27e820071cde6df949e0beb9ba4906955)
+test-job	Set up job	2025-10-22T08:02:07.4420615Z Complete job name: test-job
+test-job	Checkout code	﻿2025-10-22T08:02:07.5353943Z ##[group]Run actions/checkout@v4
+test-job	Checkout code	2025-10-22T08:02:07.5355395Z with:
+test-job	Checkout code	2025-10-22T08:02:07.5356298Z   repository: narayan662122-arch/ChessChatApp
+test-job	Checkout code	2025-10-22T08:02:07.5357859Z   token: ***
+test-job	Checkout code	2025-10-22T08:02:07.5358656Z   ssh-strict: true
+test-job	Checkout code	2025-10-22T08:02:07.5359498Z   ssh-user: git
+test-job	Checkout code	2025-10-22T08:02:07.5360342Z   persist-credentials: true
+test-job	Checkout code	2025-10-22T08:02:07.5361321Z   clean: true
+test-job	Checkout code	2025-10-22T08:02:07.5362572Z   sparse-checkout-cone-mode: true
+test-job	Checkout code	2025-10-22T08:02:07.5363652Z   fetch-depth: 1
+test-job	Checkout code	2025-10-22T08:02:07.5364485Z   fetch-tags: false
+test-job	Checkout code	2025-10-22T08:02:07.5365331Z   show-progress: true
+test-job	Checkout code	2025-10-22T08:02:07.5366201Z   lfs: false
+test-job	Checkout code	2025-10-22T08:02:07.5367000Z   submodules: false
+test-job	Checkout code	2025-10-22T08:02:07.5367874Z   set-safe-directory: true
+test-job	Checkout code	2025-10-22T08:02:07.5369112Z ##[endgroup]
+test-job	Checkout code	2025-10-22T08:02:07.6475566Z Syncing repository: narayan662122-arch/ChessChatApp
+test-job	Checkout code	2025-10-22T08:02:07.6478460Z ##[group]Getting Git version info
+test-job	Checkout code	2025-10-22T08:02:07.6479981Z Working directory is '/home/runner/work/ChessChatApp/ChessChatApp'
+test-job	Checkout code	2025-10-22T08:02:07.6482329Z [command]/usr/bin/git version
+test-job	Checkout code	2025-10-22T08:02:07.7320459Z git version 2.51.0
+test-job	Checkout code	2025-10-22T08:02:07.7348501Z ##[endgroup]
+test-job	Checkout code	2025-10-22T08:02:07.7366495Z Temporarily overriding HOME='/home/runner/work/_temp/26c110a0-00c2-46a6-acb6-b1acf1ae8ed7' before making global git config changes
+test-job	Checkout code	2025-10-22T08:02:07.7371551Z Adding repository directory to the temporary git global config as a safe directory
+test-job	Checkout code	2025-10-22T08:02:07.7382182Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/ChessChatApp/ChessChatApp
+test-job	Checkout code	2025-10-22T08:02:07.7459797Z Deleting the contents of '/home/runner/work/ChessChatApp/ChessChatApp'
+test-job	Checkout code	2025-10-22T08:02:07.7464150Z ##[group]Initializing the repository
+test-job	Checkout code	2025-10-22T08:02:07.7469977Z [command]/usr/bin/git init /home/runner/work/ChessChatApp/ChessChatApp
+test-job	Checkout code	2025-10-22T08:02:07.8400421Z hint: Using 'master' as the name for the initial branch. This default branch name
+test-job	Checkout code	2025-10-22T08:02:07.8403018Z hint: is subject to change. To configure the initial branch name to use in all
+test-job	Checkout code	2025-10-22T08:02:07.8405031Z hint: of your new repositories, which will suppress this warning, call:
+test-job	Checkout code	2025-10-22T08:02:07.8406473Z hint:
+test-job	Checkout code	2025-10-22T08:02:07.8407464Z hint: 	git config --global init.defaultBranch <name>
+test-job	Checkout code	2025-10-22T08:02:07.8408740Z hint:
+test-job	Checkout code	2025-10-22T08:02:07.8409856Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+test-job	Checkout code	2025-10-22T08:02:07.8412308Z hint: 'development'. The just-created branch can be renamed via this command:
+test-job	Checkout code	2025-10-22T08:02:07.8413826Z hint:
+test-job	Checkout code	2025-10-22T08:02:07.8414581Z hint: 	git branch -m <name>
+test-job	Checkout code	2025-10-22T08:02:07.8415468Z hint:
+test-job	Checkout code	2025-10-22T08:02:07.8416694Z hint: Disable this message with "git config set advice.defaultBranchName false"
+test-job	Checkout code	2025-10-22T08:02:07.8442470Z Initialized empty Git repository in /home/runner/work/ChessChatApp/ChessChatApp/.git/
+test-job	Checkout code	2025-10-22T08:02:07.8455993Z [command]/usr/bin/git remote add origin https://github.com/narayan662122-arch/ChessChatApp
+test-job	Checkout code	2025-10-22T08:02:07.8583313Z ##[endgroup]
+test-job	Checkout code	2025-10-22T08:02:07.8585933Z ##[group]Disabling automatic garbage collection
+test-job	Checkout code	2025-10-22T08:02:07.8588431Z [command]/usr/bin/git config --local gc.auto 0
+test-job	Checkout code	2025-10-22T08:02:07.8622007Z ##[endgroup]
+test-job	Checkout code	2025-10-22T08:02:07.8624388Z ##[group]Setting up auth
+test-job	Checkout code	2025-10-22T08:02:07.8630016Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+test-job	Checkout code	2025-10-22T08:02:07.8665078Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+test-job	Checkout code	2025-10-22T08:02:08.0272707Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+test-job	Checkout code	2025-10-22T08:02:08.0304503Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+test-job	Checkout code	2025-10-22T08:02:08.0534560Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+test-job	Checkout code	2025-10-22T08:02:08.0574227Z ##[endgroup]
+test-job	Checkout code	2025-10-22T08:02:08.0575729Z ##[group]Fetching the repository
+test-job	Checkout code	2025-10-22T08:02:08.0595476Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +0dbd84a292b799679ab67e89ad1fba5280e55ec4:refs/remotes/origin/main
+test-job	Checkout code	2025-10-22T08:02:08.6213432Z From https://github.com/narayan662122-arch/ChessChatApp
+test-job	Checkout code	2025-10-22T08:02:08.6214432Z  * [new ref]         0dbd84a292b799679ab67e89ad1fba5280e55ec4 -> origin/main
+test-job	Checkout code	2025-10-22T08:02:08.6286132Z ##[endgroup]
+test-job	Checkout code	2025-10-22T08:02:08.6287097Z ##[group]Determining the checkout info
+test-job	Checkout code	2025-10-22T08:02:08.6288204Z ##[endgroup]
+test-job	Checkout code	2025-10-22T08:02:08.6293364Z [command]/usr/bin/git sparse-checkout disable
+test-job	Checkout code	2025-10-22T08:02:08.6371297Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+test-job	Checkout code	2025-10-22T08:02:08.6401659Z ##[group]Checking out the ref
+test-job	Checkout code	2025-10-22T08:02:08.6405860Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+test-job	Checkout code	2025-10-22T08:02:08.6522897Z Switched to a new branch 'main'
+test-job	Checkout code	2025-10-22T08:02:08.6524554Z branch 'main' set up to track 'origin/main'.
+test-job	Checkout code	2025-10-22T08:02:08.6531070Z ##[endgroup]
+test-job	Checkout code	2025-10-22T08:02:08.6568628Z [command]/usr/bin/git log -1 --format=%H
+test-job	Checkout code	2025-10-22T08:02:08.6592299Z 0dbd84a292b799679ab67e89ad1fba5280e55ec4
+test-job	Run test commands	﻿2025-10-22T08:02:08.6786895Z ##[group]Run echo "This is a test workflow to trigger the log capture"
+test-job	Run test commands	2025-10-22T08:02:08.6787560Z [36;1mecho "This is a test workflow to trigger the log capture"[0m
+test-job	Run test commands	2025-10-22T08:02:08.6788011Z [36;1mecho "Running some test commands..."[0m
+test-job	Run test commands	2025-10-22T08:02:08.6788367Z [36;1mdate[0m
+test-job	Run test commands	2025-10-22T08:02:08.6788645Z [36;1mecho "Test completed successfully!"[0m
+test-job	Run test commands	2025-10-22T08:02:08.6826093Z shell: /usr/bin/bash -e {0}
+test-job	Run test commands	2025-10-22T08:02:08.6826467Z ##[endgroup]
+test-job	Run test commands	2025-10-22T08:02:08.6908363Z This is a test workflow to trigger the log capture
+test-job	Run test commands	2025-10-22T08:02:08.6919216Z Running some test commands...
+test-job	Run test commands	2025-10-22T08:02:08.6919803Z Wed Oct 22 08:02:08 UTC 2025
+test-job	Run test commands	2025-10-22T08:02:08.6920869Z Test completed successfully!
+test-job	Post Checkout code	﻿2025-10-22T08:02:08.7015765Z Post job cleanup.
+test-job	Post Checkout code	2025-10-22T08:02:08.7982539Z [command]/usr/bin/git version
+test-job	Post Checkout code	2025-10-22T08:02:08.8019681Z git version 2.51.0
+test-job	Post Checkout code	2025-10-22T08:02:08.8066848Z Temporarily overriding HOME='/home/runner/work/_temp/93fabf70-82b5-43c4-86be-100d8cb1fa1f' before making global git config changes
+test-job	Post Checkout code	2025-10-22T08:02:08.8068703Z Adding repository directory to the temporary git global config as a safe directory
+test-job	Post Checkout code	2025-10-22T08:02:08.8074037Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/ChessChatApp/ChessChatApp
+test-job	Post Checkout code	2025-10-22T08:02:08.8113638Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+test-job	Post Checkout code	2025-10-22T08:02:08.8147162Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+test-job	Post Checkout code	2025-10-22T08:02:08.8413442Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+test-job	Post Checkout code	2025-10-22T08:02:08.8436410Z http.https://github.com/.extraheader
+test-job	Post Checkout code	2025-10-22T08:02:08.8448819Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+test-job	Post Checkout code	2025-10-22T08:02:08.8483087Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+test-job	Complete job	﻿2025-10-22T08:02:08.8837619Z Cleaning up orphan processes
