@@ -24,6 +24,7 @@ jobs:
       run: chmod +x ./ChessChatApp/gradlew
       working-directory: ChessChatApp
 
+      working-directory: ChessChatApp
     - name: Build debug APK
       run: ./ChessChatApp/gradlew assembleDebug
 
