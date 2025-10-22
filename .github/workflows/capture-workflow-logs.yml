@@ -42,7 +42,7 @@ jobs:
           
           echo "ERRORS AND FAILURES:" >> error.txt
           echo "------------------------------------------------" >> error.txt
-          grep -i -E "error|fail|✗|×|❌|cannot|unable|exception|fatal" full_log.txt >> error.txt || echo "No errors found in logs" >> error.txt
+          grep -E "##\[error\]|ERROR:|Error:|FATAL:|Fatal:|Exception:|cannot access|cannot find|No such file|command not found|permission denied|exit code [1-9]" full_log.txt >> error.txt || echo "No errors found in logs" >> error.txt
           echo "------------------------------------------------" >> error.txt
           
           rm -f full_log.txt
