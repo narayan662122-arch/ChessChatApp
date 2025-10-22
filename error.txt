@@ -2,15 +2,15 @@
 WORKFLOW ERRORS ONLY
 ================================================
 Workflow Name: CI
-Workflow Run ID: 18709966810
+Workflow Run ID: 18710131293
 Status: failure
 Triggered by: narayan662122-arch
-Run URL: https://github.com/narayan662122-arch/ChessChatApp/actions/runs/18709966810
-Timestamp: Wed Oct 22 08:21:48 UTC 2025
+Run URL: https://github.com/narayan662122-arch/ChessChatApp/actions/runs/18710131293
+Timestamp: Wed Oct 22 08:28:05 UTC 2025
 ================================================
 
 ERRORS AND FAILURES:
 ------------------------------------------------
-build	Grant execute permission for gradlew	2025-10-22T08:21:32.2483657Z chmod: cannot access 'gradlew': No such file or directory
-build	Grant execute permission for gradlew	2025-10-22T08:21:32.2497971Z ##[error]Process completed with exit code 1.
+build	Grant execute permission for gradlew	2025-10-22T08:27:49.7743740Z chmod: cannot access 'gradlew': No such file or directory
+build	Grant execute permission for gradlew	2025-10-22T08:27:49.7760706Z ##[error]Process completed with exit code 1.
 ------------------------------------------------
