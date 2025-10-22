@@ -1,2 +1,1 @@
 workflow_logs/0_build.txt:2025-10-22T06:52:43.1571892Z ##[error]Process completed with exit code 1.
-workflow_logs/build/4_Grant execute permission for gradlew.txt:2025-10-22T06:52:43.1571861Z ##[error]Process completed with exit code 1.
