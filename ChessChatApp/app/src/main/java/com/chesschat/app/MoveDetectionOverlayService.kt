@@ -82,18 +82,18 @@ class MoveDetectionOverlayService : Service() {
     private fun createOverlayView() {
         val layoutParams = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             WindowManager.LayoutParams(
-                WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.WRAP_CONTENT,
                 WindowManager.LayoutParams.WRAP_CONTENT,
                 WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
-                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH,
                 PixelFormat.TRANSLUCENT
             )
         } else {
             WindowManager.LayoutParams(
-                WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.WRAP_CONTENT,
                 WindowManager.LayoutParams.WRAP_CONTENT,
                 WindowManager.LayoutParams.TYPE_PHONE,
-                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH,
                 PixelFormat.TRANSLUCENT
             )
         }
@@ -104,8 +104,17 @@ class MoveDetectionOverlayService : Service() {
 
         val container = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
-            setBackgroundColor(Color.parseColor("#E0FFFFFF"))
-            setPadding(16, 16, 16, 16)
+            setBackgroundColor(Color.parseColor("#DD2196F3"))
+            setPadding(20, 20, 20, 20)
+            elevation = 10f
+        }
+
+        val titleText = TextView(this).apply {
+            text = "♟ CHESS MOVE DETECTION"
+            textSize = 16f
+            setTextColor(Color.WHITE)
+            setPadding(0, 0, 0, 12)
+            gravity = Gravity.CENTER
         }
 
         val controlsLayout = LinearLayout(this).apply {
@@ -153,13 +162,15 @@ class MoveDetectionOverlayService : Service() {
         )
 
         moveLogTextView = TextView(this).apply {
-            text = "Move Detection Ready\n"
-            textSize = 12f
-            setTextColor(Color.BLACK)
+            text = "Move Detection Ready\nOverlay is now visible!\n"
+            textSize = 14f
+            setTextColor(Color.WHITE)
             setPadding(8, 8, 8, 8)
+            setBackgroundColor(Color.parseColor("#80000000"))
         }
 
         scrollView.addView(moveLogTextView)
+        container.addView(titleText)
         container.addView(controlsLayout)
         container.addView(scrollView)
 
