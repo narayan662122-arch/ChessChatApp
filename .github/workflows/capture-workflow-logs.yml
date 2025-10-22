@@ -8,7 +8,6 @@ on:
 jobs:
   capture-logs:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
     permissions:
       contents: write
       actions: read
@@ -20,15 +19,15 @@ jobs:
           ref: main
           token: ${{ secrets.GITHUB_TOKEN }}
       
-      - name: Fetch workflow logs
+      - name: Fetch workflow logs (errors only)
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "Fetching logs for workflow run: ${{ github.event.workflow_run.id }}"
+          echo "Fetching errors for workflow run: ${{ github.event.workflow_run.id }}"
           echo "Workflow name: ${{ github.event.workflow_run.name }}"
           echo "Workflow status: ${{ github.event.workflow_run.conclusion }}"
           echo "================================================" > error.txt
-          echo "WORKFLOW LOGS CAPTURE" >> error.txt
+          echo "WORKFLOW ERRORS ONLY" >> error.txt
           echo "================================================" >> error.txt
           echo "Workflow Name: ${{ github.event.workflow_run.name }}" >> error.txt
           echo "Workflow Run ID: ${{ github.event.workflow_run.id }}" >> error.txt
@@ -39,7 +38,14 @@ jobs:
           echo "================================================" >> error.txt
           echo "" >> error.txt
           
-          gh run view ${{ github.event.workflow_run.id }} --log >> error.txt 2>&1 || echo "Failed to fetch detailed logs" >> error.txt
+          gh run view ${{ github.event.workflow_run.id }} --log > full_log.txt 2>&1 || echo "Failed to fetch logs" > full_log.txt
+          
+          echo "ERRORS AND FAILURES:" >> error.txt
+          echo "------------------------------------------------" >> error.txt
+          grep -i -E "error|fail|✗|×|❌|cannot|unable|exception|fatal" full_log.txt >> error.txt || echo "No errors found in logs" >> error.txt
+          echo "------------------------------------------------" >> error.txt
+          
+          rm -f full_log.txt
       
       - name: Commit and push error.txt
         run: |
