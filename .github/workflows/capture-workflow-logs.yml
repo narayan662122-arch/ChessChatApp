@@ -2,7 +2,7 @@ name: Capture Workflow Logs
 
 on:
   workflow_run:
-    workflows: ["*"]
+    workflows: ["CI", "Test Failing Workflow", "Test Workflow", "Unzip Zip File to Repo"]
     types: [completed]
 
 jobs:
