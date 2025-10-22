@@ -1,5 +1,5 @@
 
-name: Build Debug APK
+name: CI
 
 on:
   push:
