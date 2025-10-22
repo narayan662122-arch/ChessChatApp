@@ -44,7 +44,7 @@ jobs:
       
       - name: Upload error artifact
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build-errors
           path: build_error.txt
