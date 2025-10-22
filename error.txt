@@ -2,16 +2,14 @@
 WORKFLOW ERRORS ONLY
 ================================================
 Workflow Name: CI
-Workflow Run ID: 18711472575
+Workflow Run ID: 18711525126
 Status: failure
 Triggered by: narayan662122-arch
-Run URL: https://github.com/narayan662122-arch/ChessChatApp/actions/runs/18711472575
-Timestamp: Wed Oct 22 09:19:29 UTC 2025
+Run URL: https://github.com/narayan662122-arch/ChessChatApp/actions/runs/18711525126
+Timestamp: Wed Oct 22 09:21:38 UTC 2025
 ================================================
 
 ERRORS AND FAILURES:
 ------------------------------------------------
-build	Build debug APK	2025-10-22T09:19:13.0255064Z Error: Could not find or load main class assembleDebug
-build	Build debug APK	2025-10-22T09:19:13.0257355Z Caused by: java.lang.ClassNotFoundException: assembleDebug
-build	Build debug APK	2025-10-22T09:19:13.0351468Z ##[error]Process completed with exit code 1.
+build	Build debug APK	2025-10-22T09:21:21.9039460Z ##[error]Process completed with exit code 1.
 ------------------------------------------------
