@@ -2,12 +2,13 @@ name: Capture Workflow Logs
 
 on:
   workflow_run:
-    workflows: ["CI", "Test Failing Workflow", "Test Workflow", "Unzip Zip File to Repo"]
+    workflows: ["*"]
     types: [completed]
 
 jobs:
   capture-logs:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
     permissions:
       contents: write
       actions: read
