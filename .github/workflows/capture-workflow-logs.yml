@@ -1,0 +1,53 @@
+name: Capture Workflow Logs
+
+on:
+  workflow_run:
+    workflows: ["*"]
+    types: [completed]
+
+jobs:
+  capture-logs:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: read
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Fetch workflow logs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Fetching logs for workflow run: ${{ github.event.workflow_run.id }}"
+          echo "Workflow name: ${{ github.event.workflow_run.name }}"
+          echo "Workflow status: ${{ github.event.workflow_run.conclusion }}"
+          echo "================================================" > error.txt
+          echo "WORKFLOW LOGS CAPTURE" >> error.txt
+          echo "================================================" >> error.txt
+          echo "Workflow Name: ${{ github.event.workflow_run.name }}" >> error.txt
+          echo "Workflow Run ID: ${{ github.event.workflow_run.id }}" >> error.txt
+          echo "Status: ${{ github.event.workflow_run.conclusion }}" >> error.txt
+          echo "Triggered by: ${{ github.event.workflow_run.triggering_actor.login }}" >> error.txt
+          echo "Run URL: ${{ github.event.workflow_run.html_url }}" >> error.txt
+          echo "Timestamp: $(date -u)" >> error.txt
+          echo "================================================" >> error.txt
+          echo "" >> error.txt
+          
+          gh run view ${{ github.event.workflow_run.id }} --log >> error.txt 2>&1 || echo "Failed to fetch detailed logs" >> error.txt
+      
+      - name: Commit and push error.txt
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add error.txt
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update error.txt with workflow logs from ${{ github.event.workflow_run.name }}"
+            git push origin main
+          fi
