@@ -2,137 +2,20 @@
 WORKFLOW ERRORS ONLY
 ================================================
 Workflow Name: Test Failing Workflow
-Workflow Run ID: 18709867669
+Workflow Run ID: 18709893934
 Status: failure
 Triggered by: narayan662122-arch
-Run URL: https://github.com/narayan662122-arch/ChessChatApp/actions/runs/18709867669
-Timestamp: Wed Oct 22 08:17:48 UTC 2025
+Run URL: https://github.com/narayan662122-arch/ChessChatApp/actions/runs/18709893934
+Timestamp: Wed Oct 22 08:18:50 UTC 2025
 ================================================
 
 ERRORS AND FAILURES:
 ------------------------------------------------
-failing-job	Set up job	﻿2025-10-22T08:17:29.9585289Z Current runner version: '2.329.0'
-failing-job	Set up job	2025-10-22T08:17:29.9621266Z ##[group]Runner Image Provisioner
-failing-job	Set up job	2025-10-22T08:17:29.9622536Z Hosted Compute Agent
-failing-job	Set up job	2025-10-22T08:17:29.9623821Z Version: 20250912.392
-failing-job	Set up job	2025-10-22T08:17:29.9624775Z Commit: d921fda672a98b64f4f82364647e2f10b2267d0b
-failing-job	Set up job	2025-10-22T08:17:29.9625988Z Build Date: 2025-09-12T15:23:14Z
-failing-job	Set up job	2025-10-22T08:17:29.9626972Z ##[endgroup]
-failing-job	Set up job	2025-10-22T08:17:29.9627809Z ##[group]Operating System
-failing-job	Set up job	2025-10-22T08:17:29.9628981Z Ubuntu
-failing-job	Set up job	2025-10-22T08:17:29.9629792Z 24.04.3
-failing-job	Set up job	2025-10-22T08:17:29.9630578Z LTS
-failing-job	Set up job	2025-10-22T08:17:29.9631310Z ##[endgroup]
-failing-job	Set up job	2025-10-22T08:17:29.9632315Z ##[group]Runner Image
-failing-job	Set up job	2025-10-22T08:17:29.9633476Z Image: ubuntu-24.04
-failing-job	Set up job	2025-10-22T08:17:29.9634482Z Version: 20250929.60.1
-failing-job	Set up job	2025-10-22T08:17:29.9636433Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20250929.60/images/ubuntu/Ubuntu2404-Readme.md
-failing-job	Set up job	2025-10-22T08:17:29.9638886Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20250929.60
-failing-job	Set up job	2025-10-22T08:17:29.9640910Z ##[endgroup]
-failing-job	Set up job	2025-10-22T08:17:29.9642960Z ##[group]GITHUB_TOKEN Permissions
-failing-job	Set up job	2025-10-22T08:17:29.9645705Z Contents: read
-failing-job	Set up job	2025-10-22T08:17:29.9646580Z Metadata: read
-failing-job	Set up job	2025-10-22T08:17:29.9647340Z Packages: read
-failing-job	Set up job	2025-10-22T08:17:29.9648305Z ##[endgroup]
-failing-job	Set up job	2025-10-22T08:17:29.9651335Z Secret source: Actions
-failing-job	Set up job	2025-10-22T08:17:29.9652489Z Prepare workflow directory
-failing-job	Set up job	2025-10-22T08:17:30.0150216Z Prepare all required actions
-failing-job	Set up job	2025-10-22T08:17:30.0209873Z Getting action download info
-failing-job	Set up job	2025-10-22T08:17:30.2886519Z Download action repository 'actions/checkout@v4' (SHA:08eba0b27e820071cde6df949e0beb9ba4906955)
-failing-job	Set up job	2025-10-22T08:17:30.5228403Z Complete job name: failing-job
-failing-job	Checkout code	﻿2025-10-22T08:17:30.6094616Z ##[group]Run actions/checkout@v4
-failing-job	Checkout code	2025-10-22T08:17:30.6095717Z with:
-failing-job	Checkout code	2025-10-22T08:17:30.6096186Z   repository: narayan662122-arch/ChessChatApp
-failing-job	Checkout code	2025-10-22T08:17:30.6097021Z   token: ***
-failing-job	Checkout code	2025-10-22T08:17:30.6097540Z   ssh-strict: true
-failing-job	Checkout code	2025-10-22T08:17:30.6097967Z   ssh-user: git
-failing-job	Checkout code	2025-10-22T08:17:30.6098612Z   persist-credentials: true
-failing-job	Checkout code	2025-10-22T08:17:30.6099160Z   clean: true
-failing-job	Checkout code	2025-10-22T08:17:30.6099652Z   sparse-checkout-cone-mode: true
-failing-job	Checkout code	2025-10-22T08:17:30.6100255Z   fetch-depth: 1
-failing-job	Checkout code	2025-10-22T08:17:30.6100850Z   fetch-tags: false
-failing-job	Checkout code	2025-10-22T08:17:30.6101350Z   show-progress: true
-failing-job	Checkout code	2025-10-22T08:17:30.6101766Z   lfs: false
-failing-job	Checkout code	2025-10-22T08:17:30.6102134Z   submodules: false
-failing-job	Checkout code	2025-10-22T08:17:30.6102550Z   set-safe-directory: true
-failing-job	Checkout code	2025-10-22T08:17:30.6103722Z ##[endgroup]
-failing-job	Checkout code	2025-10-22T08:17:30.7178597Z Syncing repository: narayan662122-arch/ChessChatApp
-failing-job	Checkout code	2025-10-22T08:17:30.7180394Z ##[group]Getting Git version info
-failing-job	Checkout code	2025-10-22T08:17:30.7181157Z Working directory is '/home/runner/work/ChessChatApp/ChessChatApp'
-failing-job	Checkout code	2025-10-22T08:17:30.7182227Z [command]/usr/bin/git version
-failing-job	Checkout code	2025-10-22T08:17:30.7607974Z git version 2.51.0
-failing-job	Checkout code	2025-10-22T08:17:30.7633416Z ##[endgroup]
-failing-job	Checkout code	2025-10-22T08:17:30.7647091Z Temporarily overriding HOME='/home/runner/work/_temp/84297a47-4956-41cc-9733-d67552287e7f' before making global git config changes
-failing-job	Checkout code	2025-10-22T08:17:30.7649268Z Adding repository directory to the temporary git global config as a safe directory
-failing-job	Checkout code	2025-10-22T08:17:30.7659134Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/ChessChatApp/ChessChatApp
-failing-job	Checkout code	2025-10-22T08:17:30.7692894Z Deleting the contents of '/home/runner/work/ChessChatApp/ChessChatApp'
-failing-job	Checkout code	2025-10-22T08:17:30.7696380Z ##[group]Initializing the repository
-failing-job	Checkout code	2025-10-22T08:17:30.7699947Z [command]/usr/bin/git init /home/runner/work/ChessChatApp/ChessChatApp
-failing-job	Checkout code	2025-10-22T08:17:30.7826586Z hint: Using 'master' as the name for the initial branch. This default branch name
-failing-job	Checkout code	2025-10-22T08:17:30.7827666Z hint: is subject to change. To configure the initial branch name to use in all
-failing-job	Checkout code	2025-10-22T08:17:30.7828732Z hint: of your new repositories, which will suppress this warning, call:
-failing-job	Checkout code	2025-10-22T08:17:30.7829390Z hint:
-failing-job	Checkout code	2025-10-22T08:17:30.7829845Z hint: 	git config --global init.defaultBranch <name>
-failing-job	Checkout code	2025-10-22T08:17:30.7830402Z hint:
-failing-job	Checkout code	2025-10-22T08:17:30.7831084Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
-failing-job	Checkout code	2025-10-22T08:17:30.7832625Z hint: 'development'. The just-created branch can be renamed via this command:
-failing-job	Checkout code	2025-10-22T08:17:30.7833469Z hint:
-failing-job	Checkout code	2025-10-22T08:17:30.7833844Z hint: 	git branch -m <name>
-failing-job	Checkout code	2025-10-22T08:17:30.7834282Z hint:
-failing-job	Checkout code	2025-10-22T08:17:30.7834860Z hint: Disable this message with "git config set advice.defaultBranchName false"
-failing-job	Checkout code	2025-10-22T08:17:30.7835848Z Initialized empty Git repository in /home/runner/work/ChessChatApp/ChessChatApp/.git/
-failing-job	Checkout code	2025-10-22T08:17:30.7842098Z [command]/usr/bin/git remote add origin https://github.com/narayan662122-arch/ChessChatApp
-failing-job	Checkout code	2025-10-22T08:17:30.7877678Z ##[endgroup]
-failing-job	Checkout code	2025-10-22T08:17:30.7878403Z ##[group]Disabling automatic garbage collection
-failing-job	Checkout code	2025-10-22T08:17:30.7881586Z [command]/usr/bin/git config --local gc.auto 0
-failing-job	Checkout code	2025-10-22T08:17:30.7908601Z ##[endgroup]
-failing-job	Checkout code	2025-10-22T08:17:30.7909275Z ##[group]Setting up auth
-failing-job	Checkout code	2025-10-22T08:17:30.7915383Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
-failing-job	Checkout code	2025-10-22T08:17:30.7943727Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
-failing-job	Checkout code	2025-10-22T08:17:30.8281374Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
-failing-job	Checkout code	2025-10-22T08:17:30.8308542Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
-failing-job	Checkout code	2025-10-22T08:17:30.8523403Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
-failing-job	Checkout code	2025-10-22T08:17:30.8563043Z ##[endgroup]
-failing-job	Checkout code	2025-10-22T08:17:30.8563943Z ##[group]Fetching the repository
-failing-job	Checkout code	2025-10-22T08:17:30.8571114Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +771140424d9baa74f092fe0aa207c329dfba7b5b:refs/remotes/origin/main
-failing-job	Checkout code	2025-10-22T08:17:31.1599257Z From https://github.com/narayan662122-arch/ChessChatApp
-failing-job	Checkout code	2025-10-22T08:17:31.1600684Z  * [new ref]         771140424d9baa74f092fe0aa207c329dfba7b5b -> origin/main
-failing-job	Checkout code	2025-10-22T08:17:31.1632421Z ##[endgroup]
-failing-job	Checkout code	2025-10-22T08:17:31.1633746Z ##[group]Determining the checkout info
-failing-job	Checkout code	2025-10-22T08:17:31.1634958Z ##[endgroup]
-failing-job	Checkout code	2025-10-22T08:17:31.1639401Z [command]/usr/bin/git sparse-checkout disable
-failing-job	Checkout code	2025-10-22T08:17:31.1687759Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
-failing-job	Checkout code	2025-10-22T08:17:31.1715099Z ##[group]Checking out the ref
-failing-job	Checkout code	2025-10-22T08:17:31.1718533Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
-failing-job	Checkout code	2025-10-22T08:17:31.1803847Z Switched to a new branch 'main'
-failing-job	Checkout code	2025-10-22T08:17:31.1806337Z branch 'main' set up to track 'origin/main'.
-failing-job	Checkout code	2025-10-22T08:17:31.1813243Z ##[endgroup]
-failing-job	Checkout code	2025-10-22T08:17:31.1846234Z [command]/usr/bin/git log -1 --format=%H
-failing-job	Checkout code	2025-10-22T08:17:31.1868319Z 771140424d9baa74f092fe0aa207c329dfba7b5b
-failing-job	Run commands that will fail	﻿2025-10-22T08:17:31.2052202Z ##[group]Run echo "Starting test that will intentionally fail..."
-failing-job	Run commands that will fail	2025-10-22T08:17:31.2053331Z [36;1mecho "Starting test that will intentionally fail..."[0m
-failing-job	Run commands that will fail	2025-10-22T08:17:31.2054016Z [36;1mecho "ERROR: Critical error occurred!"[0m
-failing-job	Run commands that will fail	2025-10-22T08:17:31.2054616Z [36;1mecho "ERROR: Database connection failed"[0m
-failing-job	Run commands that will fail	2025-10-22T08:17:31.2055219Z [36;1mecho "ERROR: Unable to process request"[0m
-failing-job	Run commands that will fail	2025-10-22T08:17:31.2055795Z [36;1mexit 1[0m
-failing-job	Run commands that will fail	2025-10-22T08:17:31.2091959Z shell: /usr/bin/bash -e {0}
-failing-job	Run commands that will fail	2025-10-22T08:17:31.2092477Z ##[endgroup]
-failing-job	Run commands that will fail	2025-10-22T08:17:31.2163314Z Starting test that will intentionally fail...
-failing-job	Run commands that will fail	2025-10-22T08:17:31.2163951Z ERROR: Critical error occurred!
-failing-job	Run commands that will fail	2025-10-22T08:17:31.2164463Z ERROR: Database connection failed
-failing-job	Run commands that will fail	2025-10-22T08:17:31.2165426Z ERROR: Unable to process request
-failing-job	Run commands that will fail	2025-10-22T08:17:31.2178146Z ##[error]Process completed with exit code 1.
-failing-job	Post Checkout code	﻿2025-10-22T08:17:31.2282624Z Post job cleanup.
-failing-job	Post Checkout code	2025-10-22T08:17:31.3201560Z [command]/usr/bin/git version
-failing-job	Post Checkout code	2025-10-22T08:17:31.3236448Z git version 2.51.0
-failing-job	Post Checkout code	2025-10-22T08:17:31.3278376Z Temporarily overriding HOME='/home/runner/work/_temp/bc68c0ff-f5ba-47f3-af33-a309a2519631' before making global git config changes
-failing-job	Post Checkout code	2025-10-22T08:17:31.3279754Z Adding repository directory to the temporary git global config as a safe directory
-failing-job	Post Checkout code	2025-10-22T08:17:31.3283474Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/ChessChatApp/ChessChatApp
-failing-job	Post Checkout code	2025-10-22T08:17:31.3317543Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
-failing-job	Post Checkout code	2025-10-22T08:17:31.3348216Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
-failing-job	Post Checkout code	2025-10-22T08:17:31.3581844Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
-failing-job	Post Checkout code	2025-10-22T08:17:31.3604527Z http.https://github.com/.extraheader
-failing-job	Post Checkout code	2025-10-22T08:17:31.3620807Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
-failing-job	Post Checkout code	2025-10-22T08:17:31.3654827Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
-failing-job	Complete job	﻿2025-10-22T08:17:31.4003799Z Cleaning up orphan processes
+failing-job	Run commands that will fail	2025-10-22T08:18:35.8800046Z [36;1mecho "ERROR: Critical error occurred!"[0m
+failing-job	Run commands that will fail	2025-10-22T08:18:35.8800646Z [36;1mecho "ERROR: Database connection failed"[0m
+failing-job	Run commands that will fail	2025-10-22T08:18:35.8801252Z [36;1mecho "ERROR: Unable to process request"[0m
+failing-job	Run commands that will fail	2025-10-22T08:18:35.8908808Z ERROR: Critical error occurred!
+failing-job	Run commands that will fail	2025-10-22T08:18:35.8909791Z ERROR: Database connection failed
+failing-job	Run commands that will fail	2025-10-22T08:18:35.8910592Z ERROR: Unable to process request
+failing-job	Run commands that will fail	2025-10-22T08:18:35.8922378Z ##[error]Process completed with exit code 1.
 ------------------------------------------------
