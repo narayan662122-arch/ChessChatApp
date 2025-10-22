@@ -1,0 +1,109 @@
+# contents: GitHub Actions workflow that:
+# - starts when any workflow_run is requested (logs a start message)
+# - when that workflow_run completes, downloads its logs, combines them into a single .txt,
+#   commits the .txt file into a dedicated branch (workflow-run-logs) in the repository.
+on:
+  workflow_run:
+    types: [requested, completed]
+
+name: Capture workflow run logs
+
+permissions:
+  contents: write        # required to commit the .txt file into the repo
+  actions: read          # required to read workflow_run data
+
+jobs:
+  watch-and-capture:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log that a workflow run started
+        if: ${{ github.event.action == 'requested' }}
+        run: |
+          echo "Workflow '${{ github.event.workflow_run.name }}' #${{ github.event.workflow_run.run_number }} started at ${{ github.event.workflow_run.run_started_at }}"
+          echo "Triggered by: ${{ github.event.workflow_run.actor.login }}"
+
+      - name: Checkout repository (for committing logs)
+        if: ${{ github.event.action == 'completed' }}
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download completed workflow run logs and save to .txt
+        if: ${{ github.event.action == 'completed' }}
+        env:
+          RUN_ID: ${{ github.event.workflow_run.id }}
+          REPO: ${{ github.repository }}
+          WORKFLOW_NAME: ${{ github.event.workflow_run.name }}
+          RUN_NUMBER: ${{ github.event.workflow_run.run_number }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          echo "Downloading logs for workflow run id=$RUN_ID (repo: $REPO)"
+          # Download logs ZIP using the Actions API
+          curl -s -L \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/$REPO/actions/runs/$RUN_ID/logs" -o logs.zip || { echo "Failed to download logs.zip"; exit 1; }
+
+          # Unzip logs (creates a folder structure)
+          unzip -q logs.zip -d logs || true
+
+          # Prepare sanitized file name
+          safe_name=$(echo "$WORKFLOW_NAME" | tr ' /' '__' | tr -cd '[:alnum:]_.-')
+          ts=$(date -u +"%Y%m%dT%H%M%SZ")
+          out_dir="captured-workflow-logs"
+          mkdir -p "$out_dir"
+          out_file="${out_dir}/${safe_name}-run-${RUN_NUMBER}-${ts}.txt"
+
+          echo "Combining logs into $out_file"
+          # If there are no extracted log files, still create a small file with metadata
+          if [ -z "$(ls -A logs 2>/dev/null || true)" ]; then
+            echo "No logs found inside ZIP. Saving metadata only." > "$out_file"
+            echo "workflow: $WORKFLOW_NAME" >> "$out_file"
+            echo "run_id: $RUN_ID" >> "$out_file"
+            echo "run_number: $RUN_NUMBER" >> "$out_file"
+            echo "conclusion: ${{ github.event.workflow_run.conclusion }}" >> "$out_file"
+            echo "started_at: ${{ github.event.workflow_run.run_started_at }}" >> "$out_file"
+            echo "completed_at: ${{ github.event.workflow_run.updated_at }}" >> "$out_file"
+          else
+            # Iterate through extracted files and append to the combined .txt
+            find logs -type f -print0 | while IFS= read -r -d '' f; do
+              echo "===== File: $f =====" >> "$out_file"
+              # Try to cat files robustly (handle binary or non-utf8 defensively)
+              if command -v iconv >/dev/null 2>&1; then
+                iconv -f utf-8 -t utf-8 "$f" -o /dev/null 2>/dev/null || true
+              fi
+              cat "$f" >> "$out_file" || true
+              echo -e "\n\n" >> "$out_file"
+            done
+          fi
+
+          # Commit the combined log to a dedicated branch so we don't clutter main branches
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          LOGS_BRANCH="workflow-run-logs"
+
+          # Ensure we have remote refs
+          git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO}.git"
+
+          # Create or switch to the logs branch
+          if git ls-remote --exit-code --heads origin "$LOGS_BRANCH" >/dev/null 2>&1; then
+            git fetch origin "$LOGS_BRANCH":"$LOGS_BRANCH"
+            git checkout "$LOGS_BRANCH"
+            git pull --ff-only origin "$LOGS_BRANCH" || true
+          else
+            git checkout -b "$LOGS_BRANCH"
+          fi
+
+          mkdir -p "$out_dir"
+          git add "$out_file"
+          if git diff --staged --quiet; then
+            echo "No changes to commit (file identical to latest)."
+          else
+            git commit -m "Add logs: ${WORKFLOW_NAME} run ${RUN_NUMBER} at ${ts}" || true
+            git push --set-upstream origin "$LOGS_BRANCH"
+            echo "Pushed $out_file to branch $LOGS_BRANCH"
+          fi
